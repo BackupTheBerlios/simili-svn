@@ -1,0 +1,14 @@
+$name=simili
+$libdir=@libdir@
+%product simili
+%description SImple MIdi LIbrary
+%release @SIMILI_VERSION@
+%version @SIMILI_VERSION@
+%requires libasound
+%copyright Frédéric Motte
+%packager Frédéric Motte
+%vendor Frédéric Motte
+%license COPYING
+%readme README
+%system all
+f 0555 root root ${libdir}/libsimili.so src/.libs/libsimili.so

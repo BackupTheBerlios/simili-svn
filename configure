@@ -19710,7 +19710,7 @@ echo "$as_me: error: Library requirements (alsa >= 1.0.0) not met; consider adju
   fi
 
 
-                                                  ac_config_files="$ac_config_files Makefile src/Makefile tools/Makefile debian/Makefile simili.pc"
+                                                            ac_config_files="$ac_config_files Makefile src/Makefile tools/Makefile debian/Makefile simili.pc simili.list"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -20298,6 +20298,7 @@ do
   "tools/Makefile" ) CONFIG_FILES="$CONFIG_FILES tools/Makefile" ;;
   "debian/Makefile" ) CONFIG_FILES="$CONFIG_FILES debian/Makefile" ;;
   "simili.pc" ) CONFIG_FILES="$CONFIG_FILES simili.pc" ;;
+  "simili.list" ) CONFIG_FILES="$CONFIG_FILES simili.list" ;;
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

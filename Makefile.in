@@ -162,14 +162,16 @@ target_os = @target_os@
 target_vendor = @target_vendor@
 SUBDIRS = src tools debian
 
-EXTRA_DIST = NEWS README TODO AUTHORS ChangeLog autogen.sh simili.pc.in
+EXTRA_DIST = NEWS README TODO AUTHORS ChangeLog autogen.sh simili.pc.in \
+	     simili.list.in
+
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = simili.pc
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
-CONFIG_CLEAN_FILES = simili.pc
+CONFIG_CLEAN_FILES = simili.pc simili.list
 DIST_SOURCES =
 DATA = $(pkgconfig_DATA)
 
@@ -182,7 +184,8 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure AUTHORS \
 	COPYING ChangeLog INSTALL Makefile.am NEWS TODO aclocal.m4 \
 	compile config.guess config.sub configure configure.in depcomp \
-	install-sh ltmain.sh missing mkinstalldirs simili.pc.in
+	install-sh ltmain.sh missing mkinstalldirs simili.list.in \
+	simili.pc.in
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 
@@ -204,6 +207,8 @@ $(srcdir)/configure:  $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENC
 $(ACLOCAL_M4):  configure.in 
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 simili.pc: $(top_builddir)/config.status simili.pc.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+simili.list: $(top_builddir)/config.status simili.list.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
@@ -585,6 +590,9 @@ uninstall-info: uninstall-info-recursive
 
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status --recheck
+
+epm-deb: all
+	epm -f deb --output-dir . simili
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

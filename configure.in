@@ -55,4 +55,5 @@ AC_PROG_LEX
 
 PKG_CHECK_MODULES(ALSA, alsa >= 1.0.0, CFLAGS="$CFLAGS -DALSA",,AC_MSG_ERROR(*** No ALSA drivers are enabled!))
 
-AC_OUTPUT(Makefile src/Makefile tools/Makefile debian/Makefile simili.pc)
+AC_OUTPUT( Makefile src/Makefile tools/Makefile debian/Makefile simili.pc\
+	   simili.list)
