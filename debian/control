@@ -1,0 +1,32 @@
+Source: libfms
+Priority: optional
+Maintainer: Frederic Motte <faf.motte@laposte.net>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.0
+
+Package: libfms0-dev
+Section: devel
+Architecture: any
+Depends: libfms0 (= ${Source-Version})
+Description: libfms development files
+ Lib For Midi Stuff in C.
+ Support midi-files and midi-ports read write with sequencing plus some
+ conviniances like midi queue and polyphonic scheduler
+
+Package: libfms0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: libfms files
+ Lib For Midi Stuff in C.
+ Support midi-files and midi-ports read write with sequencing plus some
+ conviniances like midi queue and polyphonic scheduler
+
+Package: libfms0-tools
+Section: sound
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: libfms tools
+ Misc. tools for midi manipulation and libfms projects debugage.
+ Actually, just midi2text & text2midi.
+ 

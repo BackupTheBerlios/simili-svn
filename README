@@ -1,0 +1,18 @@
+SIMILI
+======
+
+SiMiLi give a simple interface for reading and writing midi data in file or
+port.
+
+
+License
+=======
+
+SiMiLi is licensed under the terms of the GNU Public License (GPL)
+See the file COPYING for details.
+
+Who
+===
+
+Frédéric Motte <fred@megavac.ath.cx>
+http://fred.lautre.net/

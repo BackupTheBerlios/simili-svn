@@ -1,0 +1,13 @@
+[text2midi]
+incorporate it in libmidi
+write mmsg using symbole
+use strtol instead of atoi
+complete the grammar for the systems events
+
+[midi2text]
+incorporate it in libmidi
+Note ABCDEFG style with '#' and '%'
+
+[libmidi]
+replace read sys call by buffered read.
+ 

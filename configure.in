@@ -1,0 +1,58 @@
+AC_INIT
+#############################START of version stuff############################
+dnl Set various version strings - taken gratefully from the SDL Sources, itself taken from the GTk sources
+#
+# Making releases:
+# (Edit src/version.h and change the version), then:
+#   SIMILI_MICRO_VERSION += 1;
+#   SIMILI_INTERFACE_AGE += 1;
+#   SIMILI_BINARY_AGE += 1;
+# if any functions have been added, set SDL_INTERFACE_AGE to 0.
+# if backwards compatibility has been broken, set SIMILI_BINARY_AGE and SIMILI_INTERFACE_AGE to 0.
+#
+SIMILI_MAJOR_VERSION=0
+SIMILI_MINOR_VERSION=1
+SIMILI_MICRO_VERSION=1
+SIMILI_INTERFACE_AGE=0
+SIMILI_BINARY_AGE=0
+SIMILI_VERSION=$SIMILI_MAJOR_VERSION.$SIMILI_MINOR_VERSION.$SIMILI_MICRO_VERSION
+
+AC_SUBST(SIMILI_MAJOR_VERSION)
+AC_SUBST(SIMILI_MINOR_VERSION)
+AC_SUBST(SIMILI_MICRO_VERSION)
+AC_SUBST(SIMILI_INTERFACE_AGE)
+AC_SUBST(SIMILI_BINARY_AGE)
+AC_SUBST(SIMILI_VERSION)
+
+# libtool versioning
+LT_RELEASE=$SIMILI_MAJOR_VERSION.$SIMILI_MINOR_VERSION
+LT_CURRENT=`expr $SIMILI_MICRO_VERSION - $SIMILI_INTERFACE_AGE`
+LT_REVISION=$SIMILI_INTERFACE_AGE
+LT_AGE=`expr $SIMILI_BINARY_AGE - $SIMILI_INTERFACE_AGE`
+
+AC_SUBST(LT_RELEASE)
+AC_SUBST(LT_CURRENT)
+AC_SUBST(LT_REVISION)
+AC_SUBST(LT_AGE)
+##############################END of version stuff#############################
+
+AC_CANONICAL_SYSTEM
+AC_ARG_PROGRAM
+
+AM_INIT_AUTOMAKE(simili, $SIMILI_VERSION)
+
+#AC_PROG_RANLIB
+AC_PROG_CC
+AC_LIBTOOL_WIN32_DLL
+
+AC_PROG_LIBTOOL
+AC_SUBST(LIBTOOL_DEPS)
+AM_PROG_LIBTOOL
+AC_SUBST(LIBTOOL_DEPS)
+
+AC_PROG_YACC
+AC_PROG_LEX
+
+PKG_CHECK_MODULES(ALSA, alsa >= 1.0.0, CFLAGS="$CFLAGS -DALSA",,AC_MSG_ERROR(*** No ALSA drivers are enabled!))
+
+AC_OUTPUT(Makefile src/Makefile tools/Makefile debian/Makefile simili.pc)
